@@ -1,7 +1,6 @@
 package com.example.coinproject.module
 
 import com.example.coinproject.Apiservice.ApiService
-import com.example.coinproject.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,12 +15,14 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideAnalyticsService (
+    fun provideAnalyticsService(
     ): ApiService {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("https://api.coingecko.com/api/v3/coins/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
     }
+
+
 }
